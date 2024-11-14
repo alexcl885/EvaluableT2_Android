@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#F1468989"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context=".FormularioActivity">
+
+    <!-- AutoCompleteTextView para sugerencias -->
+
+
+    <!-- Spinner para mostrar un menú desplegable -->
+
+    <!-- EditText para capturar texto del usuario -->
+    <TextView
+        android:id="@+id/tv_sesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:background="#CAA19E"
+        android:textColor="#1525B6"
+        android:text="Crear cuenta" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Introduce un usuario"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
+
+    <!-- FloatingActionButton para una acción de clic -->
+
+    <!-- RadioGroup para radio buttons de selección -->
+
+    <!-- CheckBoxes para selección múltiple -->
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Introduce una contraseña"
+
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/tv_sexo"
+        android:layout_width="match_parent"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:text="Sexo:" />
+
+    <RadioGroup
+        android:id="@+id/group1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_hombre"
+            android:layout_width="106dp"
+            android:layout_height="wrap_content"
+            android:text="Hombre" />
+
+        <RadioButton
+            android:id="@+id/rb_mujer"
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:text="Mujer" />
+
+        <RadioButton
+            android:id="@+id/rb_otro"
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:text="Otro" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/cbUno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:layout_marginTop="16dp"
+        android:text="Acepto que soy un pro en Android Studio" />
+
+    <CheckBox
+        android:id="@+id/cbDos"
+        android:textSize="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acepto los terminos" />
+
+
+
+    <!-- ToggleButton para activación/desactivación -->
+    <ToggleButton
+        android:id="@+id/toggBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Desactivado"
+        android:textOn="Activado"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Switch para activación/desactivación -->
+
+    <TextView
+        android:id="@+id/tv_textouso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:textColor="@color/white"
+        android:text="USO:" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:background="#F2B4B4EF"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+    <Switch
+        android:id="@+id/switchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Recibir notificaciones" />
+
+    <Button
+        android:id="@+id/btnFloat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Enviar" />
+
+</LinearLayout>

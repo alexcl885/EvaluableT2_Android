@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_imagen"
+        android:layout_width="match_parent"
+        android:layout_height="232dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/mrrobot"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <ImageView
+        android:id="@+id/iv_llamada"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+
+        android:layout_gravity="left"
+        android:layout_margin="40dp"
+        android:background="#01043A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.809"
+        app:srcCompat="@android:drawable/stat_sys_vp_phone_call" />
+
+    <ImageView
+        android:id="@+id/iv_dados"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+
+        android:layout_gravity="left"
+        android:layout_margin="40dp"
+        android:background="#01043A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.662"
+        app:srcCompat="@drawable/dado1" />
+
+    <ImageView
+        android:id="@+id/iv_chistes"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+
+        android:layout_gravity="left"
+        android:layout_margin="40dp"
+        android:background="#FFC107"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666"
+        app:srcCompat="@android:drawable/ic_popup_disk_full" />
+
+    <ImageView
+        android:id="@+id/iv_alarma"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+        android:layout_gravity="right"
+        android:layout_margin="40dp"
+        android:background="#3C0202"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.393"
+        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+    <ImageView
+        android:id="@+id/iv_maps"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+        android:layout_gravity="left"
+        android:layout_margin="40dp"
+        android:background="#613D04"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519"
+        app:srcCompat="@drawable/maps" />
+
+    <ImageView
+        android:id="@+id/iv_github"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+        android:layout_gravity="right"
+        android:layout_margin="40dp"
+        android:background="#2C4E03"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.393"
+        app:srcCompat="@drawable/github" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

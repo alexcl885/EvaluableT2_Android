@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Aplicacion_t2</string>
+
+    <!--DADOS-->
+    <string name="nombre_fichero_preferencia_compartida">nombre_fichero_preferencia_compartida</string>
+    <!--TELEFONO-->
+    <string name="volver_atras">VOLVER ATRAS</string>
+    <string name="numero_telefono">numero_telefono</string>
+    <string name="llamar">LLAMAR</string>
+
+    <!--CHISTES-->
+    <string name="chiste">   Esto era uno, que era tan tonto, tan tonto, tan tonto, que echó una carrera
+    el sólo y quedó segundo</string>
+    <string name="describe">Hola Santi, soy tu gran alumno Copado</string>
+
+    <!--LOGIN-->
+    <string name="entrar">Entrar</string>
+    <string name="usuario">usuario</string>
+    <string name="contrasena">contrasena</string>
+    <string name="version">version 1.0</string>
+    <string name="registrarse">REGISTRARSE</string>
+    <string name="texto_registro">Si no estas registrado...</string>
+</resources>
