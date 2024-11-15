@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacion_t2.databinding.ActivityLoginBinding
 
 /**
- * Login de PatriGod
+ * Activity que hace referencia a un login sencillo
  * @author Alejandro Copado Lopez
  * */
 class Login : AppCompatActivity() {

@@ -15,7 +15,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.aplicacion_t2.databinding.ActivityFormularioBinding
-
+/**
+ * Activity que hace referncia a un formulario de registro al no
+ * tener una cuenta de sesion
+ * */
 class FormularioActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFormularioBinding
     private lateinit var ficheroCompartido : SharedPreferences
@@ -76,7 +79,6 @@ class FormularioActivity : AppCompatActivity() {
         proveRadio()
         proveSwitch()
         proveSpinner()
-        proveToggle()
         proveButtonActionEditor()
     }
     private fun proveButtonActionEditor() {
@@ -162,16 +164,7 @@ class FormularioActivity : AppCompatActivity() {
 
 
     }
-    private fun proveToggle(){
-        binding.toggBtn.setOnCheckedChangeListener {
-                buttonView, isChecked ->
-            if (isChecked){
-                showMsg("Activado")
-            }else{
-                showMsg("Desactivado")
-            }
-        }
-    }
+
 
     private fun proveBtnFloat(){
         binding.btnFloat.setOnClickListener{

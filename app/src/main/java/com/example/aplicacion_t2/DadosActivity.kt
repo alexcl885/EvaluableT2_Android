@@ -1,5 +1,6 @@
 package com.example.aplicacion_t2
 
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
@@ -54,6 +55,10 @@ class DadosActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        binding.ivInstrucciones.setOnClickListener{
+            val intent = Intent(this, instrucciones_dados::class.java)
+            startActivity(intent)
         }
 
 
