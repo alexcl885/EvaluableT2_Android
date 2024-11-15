@@ -1,26 +1,26 @@
 package com.example.aplicacion_t2
 
-import android.os.Binder
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.view.LayoutInflater
+
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+
 import com.example.aplicacion_t2.databinding.ActivityChistesBinding
 
 import java.util.Locale
+import kotlin.random.Random
 
 class ChistesActivity : AppCompatActivity() {
     private lateinit var binding : ActivityChistesBinding
     private lateinit var textToSpeech: TextToSpeech  //descriptor de voz
     private val TOUCH_MAX_TIME = 500 // en milisegundos
     private var touchLastTime: Long = 0  //para saber el tiempo entre toque.
-    private var touchNumber = 0   //numero de toques dado (por si acaso). De momento no nos hace falta.
+
     private lateinit var handler: Handler
 
     val MYTAG = "LOGCAT"  //para mirar logs
@@ -28,9 +28,9 @@ class ChistesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChistesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        configureTextToSpeech()  //configuramos nuestro textToSpeech
-        initHander()    //lanzaremos un hilo para el progressBar. No es necesario un hilo.
-        initEvent()     //Implementación del botón.
+        configureTextToSpeech()
+        initHander()
+        initEvent()
     }
     private fun initHander() {
         handler = Handler(Looper.getMainLooper())  //queremos que el tema de la IU, la llevemos al hilo principal.
@@ -38,7 +38,7 @@ class ChistesActivity : AppCompatActivity() {
         binding.btnExample.visibility = View.GONE  //ocultamos el botón.
 
         Thread{
-            Thread.sleep(3000)
+            Thread.sleep(2000)
             handler.post{
                 binding.progressBar.visibility = View.GONE  //ocultamos el progress
                 val description = getString(R.string.describe).toString()
@@ -61,32 +61,48 @@ class ChistesActivity : AppCompatActivity() {
         })
     }
     private fun initEvent() {
-        val chiste = resources.getString(R.string.chiste)
+
         binding.btnExample.setOnClickListener{
+            /**
+             * Genero una lista de chistes que al pulsar dos veces
+             * genera un numero random y elige un chiste
+             * */
+            val lista_chistes = listOf(
+                "El pasado, el presente y el futuro entran en un bar. Fue tenso.",
+                "—Doctor, ¿cómo está mi hermano? —Está en coma. —¡Menos mal, siempre ha sido muy puntual!",
+                "\"¿Me da un café con leche corto?\". \"Se ha roto la máquina, cambio\"",
+                "Ayer le eché agua al café para que estuviera más despierto.",
+                "¿Cuál es el colmo de Aladdín? Tener mal genio.",
+                "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter.",
+                "¿Qué hace un mudo bailando? Una mudanza.",
+                "Hoy no tengo WiFi, pero siento una conexión contigo.",
+                "¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+                "¿Qué le dice una impresora a otra? Esta hoja es tuya o es impresión mía."
+            )
+
+            val num_aleatorio = Random.nextInt(lista_chistes.size)
+            val chiste_random = lista_chistes[num_aleatorio];
+
             //Sacamos el tiempo actual
             val currentTime = System.currentTimeMillis()
             //Comprobamos si el margen entre pulsación, da lugar a una doble pulsación.
             if (currentTime - touchLastTime < TOUCH_MAX_TIME){
                 //  touchNumber=0
-                executorDoubleTouch(chiste)  //hemos pulsado dos veces, por tanto lanzamos el chiste.
+                executorDoubleTouch(chiste_random)  //hemos pulsado dos veces, por tanto lanzamos el chiste.
                 Log.i(MYTAG,"Escuchamos el chiste")
             }
             else{
                 //  touchNumber++
                 Log.i(MYTAG,"Hemos pulsado 1 vez.")
                 //Describimos el botón, 1 sóla pulsación
-                speakMeDescription("Botón para escuchar un chiste")
+                speakMeDescription("Toca dos veces para escuchar un chiste")
             }
 
             touchLastTime = currentTime
-            /*  if (touchNumber == 2) {
-                  Log.i(MYTAG,"Detectamos 2 pulsaciones.")
-                  touchNumber = 0
-              }
-  */
-        }  //fin listener
+
+
+        }
     }
-    //Habla
     private fun speakMeDescription(s: String) {
         Log.i(MYTAG,"Intenta hablar")
         textToSpeech.speak(s, TextToSpeech.QUEUE_FLUSH, null, null)
@@ -94,7 +110,7 @@ class ChistesActivity : AppCompatActivity() {
 
     private fun executorDoubleTouch(chiste: String) {
         speakMeDescription(chiste)
-        // Toast.makeText(this,"doble pulsacion-> Ejecuto la acción",Toast.LENGTH_LONG).show()
+
     }
 
     override fun onDestroy() {
