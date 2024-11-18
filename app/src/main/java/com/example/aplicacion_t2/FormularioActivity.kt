@@ -23,12 +23,12 @@ class FormularioActivity : AppCompatActivity() {
     private lateinit var binding : ActivityFormularioBinding
     private lateinit var ficheroCompartido : SharedPreferences
 
-    private var alumns : Array<String>
+    private var usos : Array<String>
     private lateinit var adapter : ArrayAdapter<String>
     private lateinit var adapterSpiner : ArrayAdapter<String>
 
     init {
-        alumns = Usos.arrayAlum
+        usos = Usos.arrayUsos
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,10 @@ class FormularioActivity : AppCompatActivity() {
         initAdapter()
 
         binding.btnFloat.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val nombre_usuario = binding.editText.text.toString()
+            val intent = Intent(this, MainActivity::class.java).apply {
+                putExtra("usuario", nombre_usuario )
+            }
             startActivity(intent)
         }
     }
@@ -59,13 +62,13 @@ class FormularioActivity : AppCompatActivity() {
         adapter = ArrayAdapter (
             this,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            alumns
+            usos
         )
         adapterSpiner = ArrayAdapter(
             this,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item
             ,
-            alumns
+            usos
         )
 
 
@@ -79,24 +82,8 @@ class FormularioActivity : AppCompatActivity() {
         proveRadio()
         proveSwitch()
         proveSpinner()
-        proveButtonActionEditor()
     }
-    private fun proveButtonActionEditor() {
-        binding.editText.setOnEditorActionListener{
-                v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEND){
-                showMsg("Clase, capturo el evento del Action del teclado")
-                //Trozo de código, que Cierra el teclado después de pulsar el botón de Acción.
-                //copiar y pegar
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(v.windowToken, 0)
-                true
-            }else
-                false
-        }
 
-
-    }
     private fun proveRadio(){
         binding.group1.setOnCheckedChangeListener{
                 group, chekedId ->
@@ -139,9 +126,9 @@ class FormularioActivity : AppCompatActivity() {
         binding.switchBtn.setOnCheckedChangeListener {
                 buttonView, isChecked ->
             if (isChecked){
-                showMsg("Boton Switch activado")
+                showMsg("Notificaciones activadas")
             }else{
-                showMsg("Boton Switch Desactivado")
+                showMsg("Notificaciones desactivadas")
             }
         }
     }

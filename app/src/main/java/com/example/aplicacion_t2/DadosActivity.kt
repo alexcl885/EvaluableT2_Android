@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -59,6 +60,21 @@ class DadosActivity : AppCompatActivity() {
         binding.ivInstrucciones.setOnClickListener{
             val intent = Intent(this, instrucciones_dados::class.java)
             startActivity(intent)
+        }
+        //boton para volver al primer activity
+        binding.btAtras.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btJuegoVisibleOno.setOnCheckedChangeListener{ a , pulsado ->
+            if (pulsado){
+                binding.ivVaso.visibility = View.VISIBLE
+            }
+            else{
+                binding.ivVaso.visibility = View.GONE
+            }
+
         }
 
 

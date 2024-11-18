@@ -1,6 +1,7 @@
 package com.example.aplicacion_t2
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -23,28 +24,32 @@ class ChistesActivity : AppCompatActivity() {
 
     private lateinit var handler: Handler
 
-    val MYTAG = "LOGCAT"  //para mirar logs
+    val MYTAG = "LOGCAT"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChistesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureTextToSpeech()
-        initHander()
         initEvent()
+        //codigo para volver al activity principal
+        binding.btAtras.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
-    private fun initHander() {
+    private fun initHander(tiempo:Long) {
         handler = Handler(Looper.getMainLooper())  //queremos que el tema de la IU, la llevemos al hilo principal.
         binding.progressBar.visibility = View.VISIBLE  //hacemos visible el progress
         binding.btnExample.visibility = View.GONE  //ocultamos el botón.
+        binding.btAtras.visibility = View.GONE
 
         Thread{
-            Thread.sleep(2000)
+            Thread.sleep(tiempo)
             handler.post{
                 binding.progressBar.visibility = View.GONE  //ocultamos el progress
-                val description = getString(R.string.describe).toString()
-                speakMeDescription(description)  //que nos comente de qué va esto...
                 Log.i(MYTAG,"Se ejecuta correctamente el hilo")
                 binding.btnExample.visibility = View.VISIBLE
+                binding.btAtras.visibility = View.VISIBLE
 
             }
         }.start()
@@ -83,12 +88,18 @@ class ChistesActivity : AppCompatActivity() {
             val num_aleatorio = Random.nextInt(lista_chistes.size)
             val chiste_random = lista_chistes[num_aleatorio];
 
+
             //Sacamos el tiempo actual
             val currentTime = System.currentTimeMillis()
             //Comprobamos si el margen entre pulsación, da lugar a una doble pulsación.
             if (currentTime - touchLastTime < TOUCH_MAX_TIME){
                 //  touchNumber=0
-                executorDoubleTouch(chiste_random)  //hemos pulsado dos veces, por tanto lanzamos el chiste.
+                executorDoubleTouch(chiste_random)//hemos pulsado dos veces, por tanto lanzamos el chiste.
+
+                // Calcular la duración aproximada del chiste para ejecutar el progressbar por detras
+                val palabras = chiste_random.split(" ").size // cuento las palabras
+                val numero_aprox = (palabras * 500).toLong() //mas o menos pienso que por palabra son medio segundo
+                initHander(numero_aprox) //mientras cuenta el chiste se muestra el progressbar
                 Log.i(MYTAG,"Escuchamos el chiste")
             }
             else{

@@ -4,7 +4,7 @@
     <!--DADOS-->
     <string name="nombre_fichero_preferencia_compartida">nombre_fichero_preferencia_compartida</string>
     <!--TELEFONO-->
-    <string name="volver_atras">VOLVER ATRAS</string>
+    <string name="volver_atras">ATRAS</string>
     <string name="numero_telefono">numero_telefono</string>
     <string name="llamar">LLAMAR</string>
 

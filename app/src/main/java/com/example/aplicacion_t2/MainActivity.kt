@@ -4,7 +4,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.AlarmClock
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -16,12 +20,9 @@ import com.example.aplicacion_t2.databinding.ActivityPhoneCallBinding
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var mainBinding: ActivityMainBinding
     private lateinit var fichero_compartido: SharedPreferences
-
-
-
+    private lateinit var handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -31,15 +32,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         mainBinding = ActivityMainBinding.inflate(layoutInflater) //inflamos el binding
         setContentView(mainBinding.root)
 
         iniciarPreferenciasCompartidas()
-
-
-
-
+        initHandler()
         /**
          * Hacemos que al pulsar el telefono nos mande a otra activity
          */
@@ -91,7 +88,42 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ChistesActivity::class.java)
             startActivity(intent)
         }
+        mostrarUsuario()
 
+    }
+    /**
+     * Metodo en el que se hace visible en los dos primeros segundos un progressBar y
+     * los demas componentes se hacen invisibles, y despues de esos segundos
+     * se hacen visibles los componentes y se hace invisible el progressBar
+     * */
+    private  fun initHandler(){
+        handler = Handler(Looper.getMainLooper())
+        mainBinding.pbEntradaMain.visibility = View.VISIBLE
+        mainBinding.ivMaps.visibility = View.GONE
+        mainBinding.ivDados.visibility = View.GONE
+        mainBinding.ivChistes.visibility = View.GONE
+        mainBinding.ivGithub.visibility = View.GONE
+        mainBinding.ivLlamada.visibility = View.GONE
+        mainBinding.ivImagen.visibility = View.GONE
+        mainBinding.ivAlarma.visibility = View.GONE
+        mainBinding.tvUsuario.visibility = View.GONE
+        mainBinding.tvBienvenido.visibility = View.GONE
+        Thread{
+            Thread.sleep(2000)
+            handler.post{
+                mainBinding.ivAlarma.visibility = View.VISIBLE
+                mainBinding.pbEntradaMain.visibility = View.VISIBLE
+                mainBinding.ivMaps.visibility = View.VISIBLE
+                mainBinding.ivDados.visibility = View.VISIBLE
+                mainBinding.ivChistes.visibility = View.VISIBLE
+                mainBinding.ivGithub.visibility = View.VISIBLE
+                mainBinding.ivLlamada.visibility = View.VISIBLE
+                mainBinding.ivImagen.visibility = View.VISIBLE
+                mainBinding.tvUsuario.visibility = View.VISIBLE
+                mainBinding.tvBienvenido.visibility = View.VISIBLE
+                mainBinding.pbEntradaMain.visibility = View.GONE
+            }
+        }.start()
     }
     /**
      * Metodo que pone una alarma
@@ -108,6 +140,12 @@ class MainActivity : AppCompatActivity() {
         val nombreFicheroCompartido = getString(R.string.nombre_fichero_preferencia_compartida)
 
         this.fichero_compartido = getSharedPreferences(nombreFicheroCompartido, MODE_PRIVATE)
+
+    }
+    private fun mostrarUsuario(){
+        val user = intent.getStringExtra("usuario")
+        mainBinding.tvUsuario.text = user
+
 
     }
 
