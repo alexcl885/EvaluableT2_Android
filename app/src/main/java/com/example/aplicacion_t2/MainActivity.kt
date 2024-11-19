@@ -88,6 +88,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ChistesActivity::class.java)
             startActivity(intent)
         }
+        /**
+         * Metodo que al pulsar el boton vuelve al login
+         * */
+        mainBinding.btInicarSesion.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
         mostrarUsuario()
 
     }
@@ -107,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         mainBinding.ivImagen.visibility = View.GONE
         mainBinding.ivAlarma.visibility = View.GONE
         mainBinding.tvUsuario.visibility = View.GONE
+        mainBinding.btInicarSesion.visibility = View.GONE
         mainBinding.tvBienvenido.visibility = View.GONE
         Thread{
             Thread.sleep(2000)
@@ -121,6 +129,7 @@ class MainActivity : AppCompatActivity() {
                 mainBinding.ivImagen.visibility = View.VISIBLE
                 mainBinding.tvUsuario.visibility = View.VISIBLE
                 mainBinding.tvBienvenido.visibility = View.VISIBLE
+                mainBinding.btInicarSesion.visibility = View.VISIBLE
                 mainBinding.pbEntradaMain.visibility = View.GONE
             }
         }.start()
